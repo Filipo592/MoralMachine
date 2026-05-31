@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: MoralMachine
+    env: python
+    branch: main
+    plan: free
+    buildCommand: bash build.sh
+    startCommand: gunicorn machineai.wsgi
+    autoDeploy: true
+    healthCheckPath: "/"
+    envVars:
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DJANGO_ALLOWED_HOSTS
+        value: "your-app.onrender.com"
+      - key: DJANGO_CSRF_TRUSTED_ORIGINS
+        value: "https://your-app.onrender.com"
+      - key: DJANGO_SECURE_SSL_REDIRECT
+        value: "True"
+    secretVars:
+      - key: DJANGO_SECRET_KEY
+      - key: DATABASE_URL

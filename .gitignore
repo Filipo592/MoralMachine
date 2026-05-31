@@ -11,6 +11,7 @@ local_settings.py
 
 # Static files
 staticfiles/
+runserver.*
 
 # VS Code
 .vscode/
