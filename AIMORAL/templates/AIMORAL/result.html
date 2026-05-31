@@ -1,0 +1,88 @@
+{% extends "AIMORAL/base.html" %}
+{% block title %}Moral Lab | Result{% endblock %}
+{% block content %}
+<section class="panel">
+    <span class="eyebrow">Ethical Fingerprint</span>
+    <h1>Results Dashboard</h1>
+    <p class="muted">
+        Session #{{ run.id }} completed at {{ run.completed_at|date:"d/m/Y H:i" }}.
+        Current dataset responses: <strong>{{ runs_completed }}</strong>.
+    </p>
+
+    <div class="section-block">
+        <h2>Ethical Dimensions</h2>
+        <p class="muted">
+            Average weight of your selected options on the five core dimensions.
+        </p>
+        <div class="scale-grid">
+            {% for scale in score_scales %}
+            <article class="scale-card">
+                <div class="scale-head">
+                    <h3>{{ scale.label }}</h3>
+                    <div class="scale-values">
+                        <span>You: {{ scale.user_value }}</span>
+                        <span>Baseline: {{ scale.global_value }}</span>
+                    </div>
+                </div>
+                <div class="scale-labels">
+                    <span>-2</span>
+                    <span>+2</span>
+                </div>
+                <div class="track-wrap">
+                    <div class="track">
+                        <div class="track-mid"></div>
+                        <div class="marker marker-user" style="left: {{ scale.user_pos }}%;"></div>
+                        <div class="marker marker-global" style="left: {{ scale.global_pos }}%;"></div>
+                    </div>
+                    <div class="legend">
+                        <span><i class="dot dot-user"></i>You</span>
+                        <span><i class="dot dot-global"></i>Baseline</span>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2>Moral Tensions</h2>
+        <p class="muted">
+            Your average lean inside each underlying trade-off. Stronger negative values
+            favor the left label; stronger positive values favor the right label.
+        </p>
+        <div class="scale-grid">
+            {% for scale in tension_scales %}
+            <article class="scale-card">
+                <div class="scale-head">
+                    <h3>{{ scale.title }}</h3>
+                    <div class="scale-values">
+                        <span>You: {{ scale.user_value }}</span>
+                        <span>Baseline: {{ scale.global_value }}</span>
+                    </div>
+                </div>
+                <div class="scale-labels">
+                    <span>{{ scale.left_label }}</span>
+                    <span>{{ scale.right_label }}</span>
+                </div>
+                <div class="track-wrap">
+                    <div class="track">
+                        <div class="track-mid"></div>
+                        <div class="marker marker-user" style="left: {{ scale.user_pos }}%;"></div>
+                        <div class="marker marker-global" style="left: {{ scale.global_pos }}%;"></div>
+                    </div>
+                    <div class="legend">
+                        <span><i class="dot dot-user"></i>You</span>
+                        <span><i class="dot dot-global"></i>Baseline</span>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+
+    <form method="post" action="{% url 'aimoral:start' %}" style="margin-top: 18px;">
+        {% csrf_token %}
+        <button class="btn btn-primary" type="submit">Retake assessment</button>
+    </form>
+</section>
+{% endblock %}

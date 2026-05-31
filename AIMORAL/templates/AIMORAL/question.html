@@ -1,0 +1,32 @@
+{% extends "AIMORAL/base.html" %}
+{% block title %}Moral Lab | Scenario {{ position }}{% endblock %}
+{% block content %}
+<section class="panel">
+    <div class="tag-row">
+        <span class="tag">Scenario {{ position }} of {{ total }}</span>
+    </div>
+    <h2>{{ scenario.title }}</h2>
+    <div class="progress-wrap">
+        <div class="progress-bar" style="width: {{ progress_percent }}%;"></div>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="choice-grid">
+            <article class="choice-card">
+                <h3>Option A</h3>
+                <p>{{ scenario.left_text }}</p>
+                <button class="btn btn-primary" name="selected_side" value="left" type="submit">
+                    Choose A
+                </button>
+            </article>
+            <article class="choice-card">
+                <h3>Option B</h3>
+                <p>{{ scenario.right_text }}</p>
+                <button class="btn btn-secondary" name="selected_side" value="right" type="submit">
+                    Choose B
+                </button>
+            </article>
+        </div>
+    </form>
+</section>
+{% endblock %}

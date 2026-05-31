@@ -1,0 +1,1 @@
+web: gunicorn machineai.wsgi

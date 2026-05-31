@@ -1,0 +1,49 @@
+{% extends "AIMORAL/base.html" %}
+{% block title %}Moral Lab | Start{% endblock %}
+{% block content %}
+<section class="panel">
+    <span class="eyebrow">Ethical Profiling Engine</span>
+    <h1>Moral Lab</h1>
+    <p class="muted">
+        Answer 15 AI workplace dilemmas and compare your profile with others!
+    </p>
+    <form method="post" action="{% url 'aimoral:start' %}">
+        {% csrf_token %}
+        {% if form_error %}
+        <p class="form-error">{{ form_error }}</p>
+        {% endif %}
+        <div class="form-grid">
+            <label class="field">
+                <span>Age range</span>
+                <select name="age_group" required>
+                    <option value="">Select</option>
+                    <option value="under-18" {% if submitted_age_group == 'under-18' %}selected{% endif %}>Under 18</option>
+                    <option value="18-24" {% if submitted_age_group == '18-24' %}selected{% endif %}>18-24</option>
+                    <option value="25-45" {% if submitted_age_group == '25-45' %}selected{% endif %}>25-45</option>
+                    <option value="46-60" {% if submitted_age_group == '46-60' %}selected{% endif %}>46-60</option>
+                    <option value="60+" {% if submitted_age_group == '60+' %}selected{% endif %}>60+</option>
+                </select>
+            </label>
+            <label class="field">
+                <span>Gender</span>
+                <select name="gender" required>
+                    <option value="">Select</option>
+                    <option value="female" {% if submitted_gender == 'female' %}selected{% endif %}>Female</option>
+                    <option value="male" {% if submitted_gender == 'male' %}selected{% endif %}>Male</option>
+                    <option value="other" {% if submitted_gender == 'other' %}selected{% endif %}>Other</option>
+                </select>
+            </label>
+        </div>
+        <label class="consent-field">
+            <input
+                type="checkbox"
+                name="consent_anonymous_use"
+                {% if submitted_consent_anonymous_use %}checked{% endif %}
+                required
+            >
+            <span>I agree that my answers may be used anonymously for analysis and comparison.</span>
+        </label>
+        <button class="btn btn-primary" type="submit">Start assessment</button>
+    </form>
+</section>
+{% endblock %}
