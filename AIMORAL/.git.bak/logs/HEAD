@@ -1,5 +1,0 @@
-0000000000000000000000000000000000000000 e5584eb07761d3b034476ecac3dd7591435b60d0 Filipo <filipocampolina@gmail.com> 1780260284 -0300	commit (initial): Initial commit
-e5584eb07761d3b034476ecac3dd7591435b60d0 0000000000000000000000000000000000000000 Filipo <filipocampolina@gmail.com> 1780260284 -0300	Branch: renamed refs/heads/master to refs/heads/main
-0000000000000000000000000000000000000000 e5584eb07761d3b034476ecac3dd7591435b60d0 Filipo <filipocampolina@gmail.com> 1780260284 -0300	Branch: renamed refs/heads/master to refs/heads/main
-e5584eb07761d3b034476ecac3dd7591435b60d0 b45ce81734d0eb647176bae5a6f151a377d6fcec Filipo <filipocampolina@gmail.com> 1780260322 -0300	commit: Add .gitignore and remove generated files from tracking
-b45ce81734d0eb647176bae5a6f151a377d6fcec dbe4db65e21781702c3aab4dd1c60dacc4ea46d3 Filipo <filipocampolina@gmail.com> 1780260322 -0300	pull origin main --allow-unrelated-histories --no-edit: Merge made by the 'ort' strategy.

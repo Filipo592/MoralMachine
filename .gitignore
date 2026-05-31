@@ -21,3 +21,6 @@ Thumbs.db
 
 # Heroku/Render
 *.sqlite3
+
+# Local repository backup
+AIMORAL/.git.bak/
