@@ -5,7 +5,7 @@ services:
     branch: main
     plan: free
     buildCommand: bash build.sh
-    startCommand: gunicorn machineai.wsgi
+    startCommand: gunicorn machineai.wsgi --bind 0.0.0.0:$PORT
     autoDeploy: true
     healthCheckPath: "/"
     envVars:
