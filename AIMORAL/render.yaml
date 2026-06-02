@@ -3,7 +3,7 @@ services:
     name: AIMORAL
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn project.wsgi:application
+    startCommand: gunicorn --chdir . project.wsgi:application --bind 0.0.0.0:$PORT
     releaseCommand: python manage.py migrate
     envVars:
       - key: DJANGO_DEBUG
