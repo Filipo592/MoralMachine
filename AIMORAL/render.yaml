@@ -1,19 +1,25 @@
 services:
   - type: web
-    name: AIMORAL
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn --chdir . project.wsgi:application --bind 0.0.0.0:$PORT
-    releaseCommand: python manage.py migrate
+    name: aimoral
+    runtime: python
+    runtimeVersion: 3.13
+    buildCommand: bash build.sh
+    startCommand: gunicorn project.wsgi:application --bind 0.0.0.0:$PORT --workers 4
     envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: project.settings
       - key: DJANGO_DEBUG
-        value: "False"
-      - key: DJANGO_ALLOWED_HOSTS
-        value: "your-app.onrender.com,moralmachine-3.onrender.com"
-      - key: DJANGO_CSRF_TRUSTED_ORIGINS
-        value: "https://your-app.onrender.com,https://moralmachine-3.onrender.com"
-      - key: DJANGO_SECURE_SSL_REDIRECT
-        value: "True"
-    secretVars:
+        value: false
       - key: DJANGO_SECRET_KEY
-        value: "replace-with-secret"
+        generateValue: true
+      - key: DJANGO_ALLOWED_HOSTS
+        value: "*.render.com"
+      - key: DJANGO_SECURE_SSL_REDIRECT
+        value: true
+    autoDeploy: true
+
+databases:
+  - name: aimoraldb
+    databaseName: aimoraldb
+    user: aimoraluser
+    plan: free
