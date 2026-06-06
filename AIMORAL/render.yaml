@@ -13,9 +13,9 @@ services:
       - key: DJANGO_DEBUG
         value: "False"
       - key: DJANGO_ALLOWED_HOSTS
-        value: "*.render.com,moralmachine-3.onrender.com"
+        value: "moralmachine-bhza.onrender.com"
       - key: DJANGO_CSRF_TRUSTED_ORIGINS
-        value: "https://*.render.com,https://moralmachine-3.onrender.com"
+        value: "https://moralmachine-bhza.onrender.com"
       - key: DJANGO_SECURE_SSL_REDIRECT
         value: "True"
     secretVars:
